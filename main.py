@@ -9,8 +9,8 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
 
-    cwind = MainWindow()
-    cwind.show()
+    mainwindow = MainWindow()
+    mainwindow.show()
 
 
     sys.exit(app.exec_())
