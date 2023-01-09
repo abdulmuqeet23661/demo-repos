@@ -328,83 +328,82 @@ class Ui_MainWindow(object):
         self.actionSave.setText(_translate("MainWindow", "Save"))
 
 
-class mainWindow(QtWidgets.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
-        super(mainWindow, self).__init__()
+        super(MainWindow, self).__init__()
 
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.okbutton.clicked.connect(self.select_ocpp_message_ok_button_clicked)
+        self.ui.sendbutton.clicked.connect(self.sendbutton_func_of_OCPP_Messages)
 
-        self.okbutton.clicked.connect(self.select_ocpp_message_ok_button_clicked)
-        self.sendbutton.clicked.connect(self.sendbutton_func_of_OCPP_Messages)
+        #index = self.selectthemessagedropdownmenu.findText("Select the Message", QtCore.Qt.MatchFixedString)
+        #self.selectthemessagedropdownmenu.setCurrentIndex(index)
 
-        index = self.selectthemessagedropdownmenu.findText("Select the Message", QtCore.Qt.MatchFixedString)
-        self.selectthemessagedropdownmenu.setCurrentIndex(index)
+    def select_ocpp_message_ok_button_clicked(self):
 
-        def select_ocpp_message_ok_button_clicked(self):
+        message = self.selectthemessagedropdownmenu.currentText()
+        if message == "Remote Start Transaction":
+            print("Remote Start Transaction is selected")
+            self.lineEdit_1.setText("Message Type")
+            self.lineEdit_11.setText("OCPP")
+            self.lineEdit_2.setText("Message ID")
+            self.lineEdit_12.setText("Remote Start Transaction")
+            self.lineEdit_3.setText("Payload")
+            self.lineEdit_4.setText("Connector ID")
+            self.lineEdit_5.setText("ID Tag")
 
-            message = self.selectthemessagedropdownmenu.currentText()
-            if message == "Remote Start Transaction":
-                print("Remote Start Transaction is selected")
-                self.lineEdit_1.setText("Message Type")
-                self.lineEdit_11.setText("OCPP")
-                self.lineEdit_2.setText("Message ID")
-                self.lineEdit_12.setText("Remote Start Transaction")
-                self.lineEdit_3.setText("Payload")
-                self.lineEdit_4.setText("Connector ID")
-                self.lineEdit_5.setText("ID Tag")
+        elif message == "Remote Stop Transaction":
+            pass
+        elif message == "Backend Availability":
+            pass
+        elif message == "Change Availability":
+            pass
+        elif message == "Clear Cache":
+            pass
+        elif smessage == "Extended Trigger Message":
+            pass
+        elif message == "Get Diagnostics":
+            pass
+        elif message == "Trigger Message":
+            pass
+        elif message == "Unlock Connector":
+            pass
+        elif message == "Get Configuration":
+            pass
+        elif message == "Change Configuration":
+            pass
+        elif message == "FTP Server":
+            pass
+        elif message == "Update Firmware":
+            pass
+        elif message == "Set Charging Profile":
+            pass
+        elif message == "Get Composite Schedule":
+            pass
+        elif message == "Clear Charging Profile":
+            pass
+        elif message == "Reset":
+            pass
+        elif message == "Control: Get id tags":
+            pass
+        elif message == "Control: Add id tag":
+            pass
 
-            elif message == "Remote Stop Transaction":
-                pass
-            elif message == "Backend Availability":
-                pass
-            elif message == "Change Availability":
-                pass
-            elif message == "Clear Cache":
-                pass
-            elif smessage == "Extended Trigger Message":
-                pass
-            elif message == "Get Diagnostics":
-                pass
-            elif message == "Trigger Message":
-                pass
-            elif message == "Unlock Connector":
-                pass
-            elif message == "Get Configuration":
-                pass
-            elif message == "Change Configuration":
-                pass
-            elif message == "FTP Server":
-                pass
-            elif message == "Update Firmware":
-                pass
-            elif message == "Set Charging Profile":
-                pass
-            elif message == "Get Composite Schedule":
-                pass
-            elif message == "Clear Charging Profile":
-                pass
-            elif message == "Reset":
-                pass
-            elif message == "Control: Get id tags":
-                pass
-            elif message == "Control: Add id tag":
-                pass
 
-        def sendbutton_func_of_OCPP_Messages(self):
+    def sendbutton_func_of_OCPP_Messages(self):
+        l1 = "msg_type"
+        l11 = "ocpp"
+        l2 = "msg_id"
+        l12 = "remote_start_transaction"
+        l3 = "payload"
+        l4 = "connector_id"
+        l5 = "id_tag"
+        l14 = self.lineEdit_14.text()
+        l15 = self.lineEdit_15.text()
 
-            l1 = "msg_type"
-            l11 = "ocpp"
-            l2 = "msg_id"
-            l12 = "remote_start_transaction"
-            l3 = "payload"
-            l4 = "connector_id"
-            l5 = "id_tag"
-            l14 = self.lineEdit_14.text()
-            l15 = self.lineEdit_15.text()
-
-            dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
-            json_string = json.dumps(dict_1)
-            print(type(json_string))
-            print(json_string)
+        dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
+        json_string = json.dumps(dict_1)
+        print(type(json_string))
+        print(json_string)
