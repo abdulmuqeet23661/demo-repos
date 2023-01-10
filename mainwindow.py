@@ -37,7 +37,6 @@ class Ui_MainWindow(object):
         self.selectevstatedropdownmenu.addItem("")
         self.selectevstatedropdownmenu.addItem("")
         self.selectthemessagedropdownmenu = QtWidgets.QComboBox(self.centralwidget)
-        self.selectthemessagedropdownmenu = QtWidgets.QComboBox(MainWindow)
         self.selectthemessagedropdownmenu.setGeometry(QtCore.QRect(960, 170, 211, 41))
         self.selectthemessagedropdownmenu.setObjectName("selectthemessagedropdownmenu")
         self.selectthemessagedropdownmenu.addItem("abcd")
@@ -329,7 +328,7 @@ class Ui_MainWindow(object):
         self.actionSave.setText(_translate("MainWindow", "Save"))
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
@@ -342,21 +341,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #index = self.selectthemessagedropdownmenu.findText("Select the Message", QtCore.Qt.MatchFixedString)
         #self.selectthemessagedropdownmenu.setCurrentIndex(index)
 
-    def okButtonClicked(self):
+    def okButtonClicked(self, Ui_MainWindow):
 
         print("Remote Start Transaction is selected")
 
-        message = self.selectthemessagedropdownmenu.currentText()
+        message = self.ui.selectthemessagedropdownmenu.currentText()
 
         if message == "Remote Start Transaction":
 
-            self.lineEdit_1.setText("Message Type")
-            self.lineEdit_11.setText("OCPP")
-            self.lineEdit_2.setText("Message ID")
-            self.lineEdit_12.setText("Remote Start Transaction")
-            self.lineEdit_3.setText("Payload")
-            self.lineEdit_4.setText("Connector ID")
-            self.lineEdit_5.setText("ID Tag")
+            l1=self.ui.lineEdit_1.setText("Message Type")
+            l11=self.ui.lineEdit_11.setText("OCPP")
+            l2=self.ui.lineEdit_2.setText("Message ID")
+            l22=self.ui.lineEdit_12.setText("Remote Start Transaction")
+            l3=self.ui.lineEdit_3.setText("Payload")
+            l4=self.ui.lineEdit_4.setText("Connector ID")
+            l5=self.ui.lineEdit_5.setText("ID Tag")
+
+            l14 = int(self.ui.lineEdit_14.text())
+            l15 = int(self.ui.lineEdit_15.text())
+
+            dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
+
 
         elif message == "Remote Stop Transaction":
             pass
@@ -396,17 +401,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pass
 
     def sendbutton_func_of_OCPP_Messages(self):
-        l1 = "msg_type"
-        l11 = "ocpp"
-        l2 = "msg_id"
-        l12 = "remote_start_transaction"
-        l3 = "payload"
-        l4 = "connector_id"
-        l5 = "id_tag"
-        l14 = self.lineEdit_14.text()
-        l15 = self.lineEdit_15.text()
 
-        dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
+        #l1 = "msg_type"
+        #l11 = "ocpp"
+        #l2 = "msg_id"
+        #l12 = "remote_start_transaction"
+        #l3 = "payload"
+        #l4 = "connector_id"
+        #l5 = "id_tag"
+        #l14 = self.ui.lineEdit_14.text()
+        #l15 = self.ui.lineEdit_15.text()
+
+        #dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
         json_string = json.dumps(dict_1)
         print(type(json_string))
         print(json_string)
