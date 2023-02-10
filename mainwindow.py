@@ -349,70 +349,242 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if message == "Remote Start Transaction":
 
-            l1=self.ui.lineEdit_1.setText("Message Type")
-            l11=self.ui.lineEdit_11.setText("OCPP")
-            l2=self.ui.lineEdit_2.setText("Message ID")
-            l22=self.ui.lineEdit_12.setText("Remote Start Transaction")
-            l3=self.ui.lineEdit_3.setText("Payload")
-            l4=self.ui.lineEdit_4.setText("Connector ID")
-            l5=self.ui.lineEdit_5.setText("ID Tag")
+            send_json_data = {"msg_type": "ocpp" , "msg_id": "remote_start_transaction", "payload": {"connector_id": 1,"id_tag": 3564543423}}
 
-            l14 = int(self.ui.lineEdit_14.text())
-            l15 = int(self.ui.lineEdit_15.text())
+            print(send_json_data)
 
-            dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
-
+            l1 = self.ui.lineEdit_1.setText("Message Type")
+            l11 = self.ui.lineEdit_11.setText("OCPP")
+            l2 = self.ui.lineEdit_2.setText("Message ID")
+            l22 = self.ui.lineEdit_12.setText("Remote Start Transaction")
+            l3 = self.ui.lineEdit_3.setText("Payload")
+            l4 = self.ui.lineEdit_4.setText("Connector ID")
+            l5 = self.ui.lineEdit_5.setText("ID Tag")
 
         elif message == "Remote Stop Transaction":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "remote_stop_transaction",
+                "payload": {
+                    "transaction_id": 77
+                }
+            }
+
         elif message == "Backend Availability":
-            pass
+
+            send_json_data = {
+                "msg_type": "control",
+                "msg_id": "change_backend_availability",
+                "payload": {
+                    "online": true
+                }
+            }
+
         elif message == "Change Availability":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "change_availability",
+                "payload": {
+                    "connector_id": 1,
+                    "type": "Inoperative"
+                }
+            }
+
         elif message == "Clear Cache":
-            pass
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "clear_cache",
+                "payload": {}
+            }
+
         elif smessage == "Extended Trigger Message":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "extended_trigger_message",
+                "payload": {
+                    "connector_id": 1,
+                    "requested_message": "StatusNotification"
+                }
+            }
+
         elif message == "Get Diagnostics":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "get_diagnostics",
+                "payload": {
+                    "location": "ftp://FT:laboratory@192.168.178.70:4563/data/ftp_server/FT/",
+                    "retries": 3
+                }
+            }
+
         elif message == "Trigger Message":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "trigger_message",
+                "payload": {
+                    "connector_id": 0,
+                    "requested_message": "StatusNotification"
+                }
+            }
+
         elif message == "Unlock Connector":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "unlock_connector",
+                "payload": {
+                    "connector_id": 1
+                }
+            }
+
         elif message == "Get Configuration":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "get_configuration",
+                "payload": {
+                    "key": [
+                        "MeterValuesSampledData",
+                        "AbsoluterBullshit"
+                    ]
+                }
+            }
+
         elif message == "Change Configuration":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "change_configuration",
+                "payload": {
+                "payload": {
+                    "key": "MeterValuesSampledData",
+                    "value": "Energy.Active.Import.Register"
+                     }
+                }
+            }
+
         elif message == "FTP Server":
-            pass
+
+            send_json_data = {
+                "msg_type": "control",
+                "msg_id": "configure_ftp_server",
+                "payload": {
+                    "status": "start",
+                    "port": 4563
+                }
+            }
+
         elif message == "Update Firmware":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "update_firmware",
+                "payload": {
+                    "location": "ftp://FT:laboratory@192.168.178.70:4563/data/ftp_server/FT/charx-ocpp16-agent_1.2.2_RC33_arm.ipk.sig",
+                    "retrieve_date": "2022-09-16T07:51:00Z"
+                    }
+            }
+
         elif message == "Set Charging Profile":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "set_charging_profile",
+                "payload": {
+                    "connector_id": "2",
+                    "cs_charging_profiles": {
+                        "charging_profile_id": 101,
+                        "stack_level": 0,
+                        "charging_profile_purpose": "TxProfile",
+                        "charging_profile_kind": "Absolute",
+                        "charging_schedule": {
+                            "charging_rate_unit": "A",
+                            "charging_schedule_period": {
+                                "start_period": 0,
+                                "limit": 16,
+                                "number_phases": 3
+                            }
+                        }
+                    }
+                }
+            }
+
         elif message == "Get Composite Schedule":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "get_composite_schedule",
+                "payload": {
+                    "duration": 600,
+                    "connector_id": 2
+                }
+            }
+
         elif message == "Clear Charging Profile":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "clear_charging_profile",
+                "payload": {}
+            }
+
         elif message == "Reset":
-            pass
+
+            send_json_data = {
+                "msg_type": "ocpp",
+                "msg_id": "reset",
+                "payload": {
+                    "type": "Soft"
+                }
+            }
+
         elif message == "Control: Get id tags":
-            pass
+
+            send_json_data = {
+                "msg_type": "control",
+                "msg_id": "manage_ocpp_id_tags",
+                "payload": {
+                    "action": "get_all"
+                }
+            }
+
         elif message == "Control: Add id tag":
-            pass
+
+            send_json_data = {
+                "msg_type": "control",
+                "msg_id": "manage_ocpp_id_tags",
+                "payload": {
+                    "action": "add_tag",
+                    "id_tag": "234565"
+                }
+            }
 
     def sendbutton_func_of_OCPP_Messages(self):
 
-        #l1 = "msg_type"
-        #l11 = "ocpp"
-        #l2 = "msg_id"
-        #l12 = "remote_start_transaction"
-        #l3 = "payload"
-        #l4 = "connector_id"
-        #l5 = "id_tag"
-        #l14 = self.ui.lineEdit_14.text()
-        #l15 = self.ui.lineEdit_15.text()
+        l1 = "msg_type"
+        l11 = "ocpp"
+        l2 = "msg_id"
+        l12 = "remote_start_transaction"
+        l3 = "payload"
+        l4 = "connector_id"
+        l5 = "id_tag"
+        l14 = self.ui.lineEdit_14.text()
+        l15 = self.ui.lineEdit_15.text()
 
-        #dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
+        dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
+
+
+
+
+        l14 = int(self.ui.lineEdit_14.text())
+        l15 = int(self.ui.lineEdit_15.text())
+
+    #   dict_1 = {l1: l11, l2: l12, l3: {l4: l14, l5: l15}}
         json_string = json.dumps(dict_1)
         print(type(json_string))
         print(json_string)
